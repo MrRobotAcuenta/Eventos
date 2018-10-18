@@ -1,6 +1,5 @@
 package Ventana;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,10 +11,7 @@ import clases.ListaEventos;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class VentanaPrinicipal extends JFrame {
 	private static ListaEventos eventos=new ListaEventos();
