@@ -11,50 +11,57 @@ public class Resinto {
 	public Resinto() {
 		lugar = new ArrayList<Cupo>();
 	}
-	public boolean existeCupo(String asiento) 
-	{
-		if(asiento != null)
-		{
-			for(int i=0; i< lugar.size(); i++)
-			{
-				if(lugar.get(i).getAsiento().equals(asiento))
-				{
+	
+	public boolean agregarCupo(Cupo nuevo) {
+		Cupo aux_cupo;
+		for(int i=0; i<lugar.size();i++) {
+			aux_cupo=new Cupo();
+			aux_cupo=lugar.get(i);
+			if(aux_cupo.getAsiento().equals(nuevo.getAsiento())) {
+				return false;
+			}
+		}
+		lugar.add(nuevo);
+		return true;
+	}
+	
+	public Cupo eliminarCupo(String asiento) {	
+		Cupo aux_cupo;
+		for(int i=0; i<lugar.size();i++) {
+			aux_cupo=new Cupo();
+			aux_cupo=lugar.get(i);
+			if(aux_cupo.getAsiento().equals(asiento)) {
+				return lugar.remove(i);
+			}
+		}
+		return null;
+	}
+	
+	public boolean existeCupo(String asiento) {
+		Cupo aux_cupo;
+		for(int i=0; i<lugar.size(); i++) {
+			aux_cupo=new Cupo();
+			aux_cupo=lugar.get(i);
+			if(aux_cupo.getAsiento().equals(asiento)) {
 					return true;
-				}
 			}
 		}
 		return false;
 	}
-	public boolean modificarDisponible(String asiento, boolean nuevo)
-	{
-			for(int i=0; i< lugar.size(); i++)
-			{
-				if(lugar.get(i).getAsiento().equals(asiento))
-				{
-					lugar.get(i).setDisponible(nuevo);
-					return true;
-				}
-			}
-		
-		return false;
-	}
-	public void agregarCupo(String evento, String asiento, boolean disponible) 
-	{
-		Cupo nuevo = new Cupo();
-		nuevo.setNameEvento(evento);
-		nuevo.setAsiento(asiento);
-		nuevo.setDisponible(disponible);
-		lugar.add(nuevo);	
-	}
-	public void eliminarCupo(String asiento){	
-		for(int i=0; i<lugar.size() ; i++)
-		{
-			if(lugar.get(i).getAsiento().equals(asiento))
-			{
-				lugar.remove(i);		
+	
+	public boolean modificarDisponible(String asiento, boolean nuevo) {
+		Cupo aux_cupo;
+		for(int i=0; i< lugar.size(); i++) {
+			aux_cupo=new Cupo();
+			aux_cupo=lugar.get(i);
+			if(aux_cupo.getAsiento().equals(asiento)) {
+				aux_cupo.setDisponible(nuevo);
+				return true;
 			}
 		}
+		return false;
 	}
+
 	
 	public void readResintoEvento(Connectar conexion, String nameEvento) {
 		ResultSet resultado;
@@ -68,6 +75,7 @@ public class Resinto {
 				aux.setAsiento(resultado.getString(2));
 				aux.setDisponible(resultado.getBoolean(3));
 				lugar.add(aux);
+				System.out.println(lugar.get(lugar.size()-1).getAsiento()+" "+lugar.get(lugar.size()-1).isDisponible());
 			}
 		}
 		catch(SQLException e) {

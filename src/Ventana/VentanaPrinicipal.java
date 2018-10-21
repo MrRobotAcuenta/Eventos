@@ -1,6 +1,7 @@
 package Ventana;
 
 import java.awt.EventQueue;
+import java.io.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,12 +15,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class VentanaPrinicipal extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static ListaEventos eventos=new ListaEventos();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
 		Connectar conexion=new Connectar();
 		eventos.readListaEventos(conexion);
 		EventQueue.invokeLater(new Runnable() {
@@ -31,7 +36,8 @@ public class VentanaPrinicipal extends JFrame {
 					e.printStackTrace();
 				}
 			}
-		});
+		}
+		);
 	}
 
 	/**

@@ -12,45 +12,52 @@ public class TicketsVendidos {
 	public TicketsVendidos() {
 		registro = new ArrayList<Ticket>();
 	}
-	public boolean existeTicket(int id) 
-	{
-		
-		for(int i=0; i< registro.size(); i++)
-		{
-			if(registro.get(i).getIdTicket()==id)
-			{
+	
+	
+	public boolean existeTicket(int id) {
+		for(int i=0; i< registro.size(); i++) {
+			if(registro.get(i).getIdTicket()==id) {
 				return true;
 			}
 		}
 		
 		return false;
 	}
-	public boolean modificarPrecio(int id, int precio)
-	{
-		for(int i=0; i< registro.size(); i++)
-			{
-			if(registro.get(i).getIdTicket()==id)
-				{
-					registro.get(i).setPrecio(precio);
-					return true;
-				}
-			}
-		return false;
-	}
 	
-	public void agregarTicket(Ticket nuevo) {
-		registro.add(nuevo);	
-	}
 	
-	public void eliminarCupo(int id)
-	{	
-		for(int i=0; i<registro.size() ; i++)
-		{
-			if(registro.get(i).getIdTicket()==id)
-			{
-				registro.remove(i);		
+	public boolean agregarTicket(Ticket nuevo) {
+		Ticket aux_ticket;
+		for(int i=0; i< registro.size(); i++) {
+			aux_ticket=new Ticket();
+			aux_ticket=registro.get(i);
+			if(aux_ticket.getIdTicket()==nuevo.getIdTicket()) {
+				return false;
 			}
 		}
+		registro.add(nuevo);
+		return true;
+				
+	}
+	
+	public Ticket eliminarTicket(int id) {	
+		for(int i=0; i<registro.size() ; i++) {
+			if(registro.get(i).getIdTicket()==id) {
+				return	registro.remove(i);
+			}
+		}
+		return null;
+	}
+	
+	
+	public boolean modificarPrecio(int id, int precio) {
+		for(int i=0; i< registro.size(); i++) {
+			if(registro.get(i).getIdTicket()==id) {
+				registro.get(i).setPrecio(precio);
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public void readTicketsVendidosPersona(Connectar conexion, String rut, String nameEvento) {
@@ -68,8 +75,8 @@ public class TicketsVendidos {
 				aux.setNameEvento(resultado.getString(5));
 				aux.setRut(resultado.getString(6));
 				
-				System.out.println(aux.getAsiento());
 				registro.add(aux);
+				System.out.println(registro.get(registro.size()-1).getAsiento());
 			}
 		}
 		catch(SQLException e) {

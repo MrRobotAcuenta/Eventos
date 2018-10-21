@@ -65,9 +65,9 @@ public class Evento {
 	}
 	*/
 	
-	public boolean nuevaPersona(String rut, String nombre, String fechaNacimiento) {
-		return personas.nuevaPersona(rut, nombre, fechaNacimiento);
-		
+	
+	public boolean nuevaPersona(Persona p) {
+		return personas.nuevaPersona(p);
 	}
 	public Persona eliminarPersona(String rutPersona) {
 		return personas.eliminarPersona(rutPersona);
@@ -76,20 +76,50 @@ public class Evento {
 	public Persona buscarPersona(String rutPersona){
 		return personas.buscarPersona(rutPersona);
 	}
+	public boolean modificarNombrePersona(String rutPersona, String input) {
+		return personas.modificarNombrePersona(rutPersona, input);
+	}
+	
+	
+	
+	
+	public boolean existeTicket(String rutPersona, int id) {
+		return personas.existeTicket(rutPersona, id);
+	}
+	
+	public boolean compraTicket(Ticket input) {
+		return personas.compraTicket(input);
+	}
+	
+	public Ticket eliminarTicket(String rutPersona, int id) {
+		return personas.eliminarTicket(rutPersona, id);
+	}
+	
+	public boolean modificarPrecio(String rutPersona, int id, int precio) {
+		return personas.modificarPrecio(rutPersona, id, precio);
+	}
 	
 	public void readPersonasEvento(Connectar conexion) {
 		personas.readPersonasEvento(conexion, nombre);
 	}
 	
 	
-	public void agregarCupo(String evento, String asiento, boolean disponible) {
-		asistentes.agregarCupo(evento, asiento, disponible);
+	
+	
+	public boolean agregarCupo(Cupo input) {
+		return asistentes.agregarCupo(input);
 	}
-	public void borrarCupo(String asiento) {
-		asistentes.eliminarCupo(asiento);
+	
+	public Cupo eliminarCupo(String asiento) {
+		return asistentes.eliminarCupo(asiento);
 	}
+	
 	public boolean existeCupo(String asiento) {
 		return asistentes.existeCupo(asiento);
+	}
+	
+	public boolean modificarDisponible(String asiento, boolean nuevo) {
+		return asistentes.modificarDisponible(asiento, nuevo);
 	}
 	
 	public void readResintoEvento(Connectar conexion) {

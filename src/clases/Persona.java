@@ -5,9 +5,9 @@ import java.util.*;
 
 public class Persona {
 	private String rut;
+	private String nombre;
 	//private Calendar fechaNacimiento;
 	private TicketsVendidos tickets;
-	private String nombre;
 	
 	public Persona() {
 		tickets= new TicketsVendidos();
@@ -48,9 +48,33 @@ public class Persona {
 		this.nombre = nombre;
 	}
 	
-	public void compraTicket(Ticket ticket) {
-		tickets.agregarTicket(ticket);
+	
+	/*
+	 Metodos para manipular datos de la lista tickets
+	 */
+	
+	
+	public boolean existeTicket(int id) {
+		return tickets.existeTicket(id);
 	}
+	
+	public boolean compraTicket(Ticket input) {
+		return tickets.agregarTicket(input);
+	}
+	
+	
+	public Ticket eliminarTicket(int id) {
+		return tickets.eliminarTicket(id);
+	}
+	
+	public boolean modificarPrecio(int id, int precio) {
+		return tickets.modificarPrecio(id, precio);
+	}
+	
+	
+	/*
+	 Fin metodos lista Tickets
+	 */
 	
 	/*public boolean mayoriaEdad()
 	{
