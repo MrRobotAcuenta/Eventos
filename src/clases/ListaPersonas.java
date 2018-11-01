@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
+//comentario
 public class ListaPersonas {
 	private ArrayList<Persona> listaPersonas;
 	
