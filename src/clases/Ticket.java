@@ -7,26 +7,14 @@ public class Ticket {
 	//atributos
 	private String asiento;
 	private int precio;
-	//private Calendar fechaEvento; //sera cambiado a una variable date
+	private Calendar fechaEvento;// yeeeeeeeeeee
 	private int idTicket;
 	private String nameEvento;
 	private String rut;
-	public Ticket(String asiento,int precio,String nameEvento,String rut) {
-		this.asiento=asiento;
-		this.precio=precio;
-		this.idTicket=idTicket;
-		this.nameEvento=nameEvento;
-		this.rut=rut;
-		
-	}
+	
 	public Ticket() {
-		asiento="";
-		precio=0;
-		//idTicket=setIdTicket();
-		nameEvento="";
-		rut="";
-		
-		}
+		fechaEvento= Calendar.getInstance();
+	}
 	
 	
 	//getters & setters
@@ -57,24 +45,17 @@ public class Ticket {
 	public void setRut(String rut) {
 		this.rut=rut;
 	}
-	//sera cambiado a variable de tipo date
-	/*public String getFechaEvento()
-	{
-		SimpleDateFormat formato = new SimpleDateFormat("'Fecha:' EEEE dd 'de' MMMM 'del' yyyy");
+	public String getFechaEvento(){
+		SimpleDateFormat formato = new SimpleDateFormat("dd'/'MM'/'yyyy");
 		return formato.format(fechaEvento.getTime());
 	}
-	public void setFechaEvento(String fechaNueva)
-	{
+	public void setFechaEvento(String fechaNueva){
 		String[] array = fechaNueva.split("/");
-		this.fechaEvento.set(Calendar.DAY_OF_MONTH,Integer.parseInt(array[0]));
-		this.fechaEvento.set(Calendar.MONTH,Integer.parseInt(array[1])-1);
-		this.fechaEvento.set(Calendar.YEAR,Integer.parseInt(array[2]));
+		fechaEvento.set(Integer.parseInt(array[2]), Integer.parseInt(array[1])-1, Integer.parseInt(array[0]));
 	}
-	*/
-	//sera cambiado a variable de tipo date
-	//public int getIdTicket() {
-		//return idTicket;
-	//}
+	
+	
+	
 	public int setIdTicket() {
 		int numero;
 		numero = (int) (Math.random() * 9999999) + 1;

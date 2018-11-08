@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-//comentario
+
 public class ListaPersonas {
 	private ArrayList<Persona> listaPersonas;
 	
@@ -14,11 +14,11 @@ public class ListaPersonas {
 	
 	
 	public Persona eliminarPersona(String rutPersona) {
-		Persona aux_persona;
+		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
-			aux_persona=new Persona();
-			aux_persona=listaPersonas.get(i);
-			if(aux_persona.getRut().equals(rutPersona)) {
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(rutPersona)) {
 				return listaPersonas.remove(i);
 			}
 		}
@@ -27,11 +27,11 @@ public class ListaPersonas {
 	}
 	
 	public Persona buscarPersona(String rutPersona) {
-		Persona aux_persona;
+		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
-			aux_persona=new Persona();
-			aux_persona=listaPersonas.get(i);
-			if(aux_persona.getRut().equals(rutPersona)) {
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(rutPersona)) {
 				return listaPersonas.get(i);
 			}
 		}
@@ -39,11 +39,11 @@ public class ListaPersonas {
 	}
 	
 	public boolean nuevaPersona(Persona p) {
-		Persona aux_persona;
+		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
-			aux_persona = new Persona();
-			aux_persona=listaPersonas.get(i);
-			if(aux_persona.getRut().equals(p.getRut())) {
+			asistente = new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(p.getRut())) {
 				return false;
 			}
 		}
@@ -53,13 +53,38 @@ public class ListaPersonas {
 	}
 	
 	public boolean modificarNombrePersona(String rutPersona, String input) {
-		Persona aux_persona;
+		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
-			aux_persona=new Persona();
-			aux_persona=listaPersonas.get(i);
-			if(aux_persona.getRut().equals(rutPersona)) {
-				aux_persona.setNombre(input);
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(rutPersona)) {
+				asistente.setNombre(input);
 				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean modificarFechaNacimiento(String rutPersona, String fechaNueva) {
+		Persona asistente;
+		for(int i=0;i<listaPersonas.size();i++) {
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(rutPersona)) {
+				asistente.setFechaNacimiento(fechaNueva);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean mayoriaEdad(String rutPersona) {
+		Persona asistente;
+		for(int i=0;i<listaPersonas.size();i++) {
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(rutPersona)) {
+				return asistente.mayoriaEdad();
 			}
 		}
 		return false;
@@ -72,24 +97,24 @@ public class ListaPersonas {
 	
 	
 	public boolean existeTicket(String rutPersona, int id) {
-		Persona aux_persona;
+		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
-			aux_persona=new Persona();
-			aux_persona=listaPersonas.get(i);
-			if(aux_persona.getRut().equals(rutPersona)) {
-				return aux_persona.existeTicket(id);
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(rutPersona)) {
+				return asistente.existeTicket(id);
 			}
 		}
 		return false;
 	}
 	
 	public boolean compraTicket(Ticket input) {
-		Persona aux_persona;
+		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
-			aux_persona=new Persona();
-			aux_persona=listaPersonas.get(i);
-			if(aux_persona.getRut().equals(input.getRut())) {
-				return aux_persona.compraTicket(input);
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(input.getRut())) {
+				return asistente.compraTicket(input);
 			}
 		}
 		
@@ -97,28 +122,50 @@ public class ListaPersonas {
 	}
 	
 	public Ticket eliminarTicket(String rutPersona, int id) {
-		Persona aux_persona;
+		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
-			aux_persona=new Persona();
-			aux_persona=listaPersonas.get(i);
-			if(aux_persona.getRut().equals(rutPersona)) {
-				return aux_persona.eliminarTicket(id);
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(rutPersona)) {
+				return asistente.eliminarTicket(id);
 			}
 		}
 		return null;
 	}
 	
 	public boolean modificarPrecio(String rutPersona, int id, int precio) {
-		Persona aux_persona;
+		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
-			aux_persona=new Persona();
-			aux_persona=listaPersonas.get(i);
-			if(aux_persona.getRut().equals(rutPersona)) {
-				return aux_persona.modificarPrecio(id, precio);
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(rutPersona)) {
+				return asistente.modificarPrecio(id, precio);
 			}
 		}
 		return false;
 	}
+	
+	public boolean modificarFechaEvento(String rutPersona, int id, String fechaNueva) {
+		Persona asistente;
+		for(int i=0;i<listaPersonas.size();i++) {
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			if(asistente.getRut().equals(rutPersona)) {
+				return asistente.modificarFechaTicket(id, fechaNueva);
+			}
+		}
+		return false;
+	}
+	
+	public void modificarFechaEvento(String fechaNueva) {
+		Persona asistente;
+		for(int i=0;i<listaPersonas.size();i++) {
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			asistente.modificarFechaTicket(fechaNueva);
+		}
+	}
+	
 	
 	
 	/*
@@ -135,7 +182,7 @@ public class ListaPersonas {
 			while(resultado.next()) {
 				aux=new Persona();
 				aux.setRut(resultado.getString(1));
-				//aux.setFechaNacimiento(resultado.getString(2));
+				aux.setFechaNacimiento(resultado.getString(2));
 				aux.setNombre(resultado.getString(3));
 				
 				aux.readTicketVendidoPersona(conexion, nameEvento);
@@ -146,6 +193,16 @@ public class ListaPersonas {
 		catch(SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public void writePersonasEvento(Connectar conexion) {
+		Persona asistente;
+		for(int i=0;i<listaPersonas.size();i++) {
+			asistente=new Persona();
+			asistente=listaPersonas.get(i);
+			conexion.setQuery("INSERT INTO `personas` (`rut`, `fechaNacimiento`, `nombre`) VALUES ('" + asistente.getRut() + "', '" + asistente.getFechaNacimiento() + "', '" + asistente.getNombre() + "') ON DUPLICATE KEY UPDATE rut=VALUES(rut), fechaNacimiento=VALUES(fechaNacimiento), nombre=VALUES(nombre)");
+			asistente.writeTicketVendidoPersona(conexion);
 		}
 	}
 	

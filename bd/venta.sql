@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2018 a las 18:32:42
+-- Tiempo de generación: 08-11-2018 a las 22:52:27
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -43,7 +43,8 @@ INSERT INTO `cupo` (`nameEvento`, `asiento`, `disponible`) VALUES
 ('Festigame', 'ASD 12', 0),
 ('Festigame', 'ASD 13', 1),
 ('Octoberfest', 'BLAT 04', 0),
-('Octoberfest', 'BLAT 05', 0);
+('Octoberfest', 'BLAT 05', 0),
+('Octoberfest', 'BLAT 06', 0);
 
 -- --------------------------------------------------------
 
@@ -87,6 +88,7 @@ INSERT INTO `personas` (`rut`, `fechaNacimiento`, `nombre`) VALUES
 ('17674932-5', '11/09/1995', 'elgu sanito'),
 ('18476587-3', '14/05/1995', 'juan lopez'),
 ('18534235-7', '13/01/1997', 'Bladimir Montes'),
+('19234534-8', '20/04/2001', 'Melon'),
 ('19836423-2', '14/05/1997', 'gerardo reyero');
 
 -- --------------------------------------------------------
@@ -112,7 +114,8 @@ INSERT INTO `tickets` (`asiento`, `precio`, `fechaEvento`, `idTicket`, `nameEven
 ('ASD 12', 50000, '12/11/2018', 1, 'Festigame', '19836423-2'),
 ('ASD 11', 50000, '12/11/2018', 2, 'Festigame', '18476587-3'),
 ('BLAT 05', 70000, '15/11/2018', 4, 'Octoberfest', '18534235-7'),
-('BLAT 04', 60000, '15/11/2018', 6, 'Octoberfest', '17674932-5');
+('BLAT 04', 60000, '15/11/2018', 6, 'Octoberfest', '17674932-5'),
+('BLAT 06', 65000, '15/11/2018', 8, 'Octoberfest', '19234534-8');
 
 --
 -- Índices para tablas volcadas

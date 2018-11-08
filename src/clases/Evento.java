@@ -8,22 +8,16 @@ public class Evento {
 	private String tipo;
 	private boolean restriccion;
 	private String lugar;
-	//private Calendar fecha;
+	private Calendar fecha;
 	private ListaPersonas personas;
-	private Resinto asistentes;
+	private Recinto asistentes;
 	
 	
 	//inicializa un evento
 	public Evento() {
+		fecha= Calendar.getInstance();
 		personas=new ListaPersonas();
-		asistentes=new Resinto();
-	}
-	public Evento(String nombre,String tipo,String lugar) {
-		this.nombre=nombre;
-		this.tipo=tipo;
-		this.lugar=lugar;
-		personas=new ListaPersonas();
-		asistentes=new Resinto();
+		asistentes=new Recinto();
 	}
 
 	
@@ -53,77 +47,99 @@ public class Evento {
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
 	}
-	/*public String getFecha() {
-		SimpleDateFormat formato = new SimpleDateFormat("'Fecha:' EEEE dd 'de' MMMM 'del' yyyy");
+	public String getFecha() {
+		SimpleDateFormat formato = new SimpleDateFormat("dd'/'MM'/'yyyy");
 		return formato.format(fecha.getTime());
 	}
 	public void setFecha(String fechaNueva) {
 		String[] array = fechaNueva.split("/");
-		this.fecha.set(Calendar.DAY_OF_MONTH,Integer.parseInt(array[0]));
-		this.fecha.set(Calendar.MONTH,Integer.parseInt(array[1])-1);
-		this.fecha.set(Calendar.YEAR,Integer.parseInt(array[2]));
+		fecha.set(Integer.parseInt(array[2]), Integer.parseInt(array[1])-1, Integer.parseInt(array[0]));
+		System.out.println(getFecha());
 	}
-	*/
 	
 	
-	public boolean nuevaPersona(Persona p) {
+	
+	public boolean personaNuevaPersona(Persona p) {
 		return personas.nuevaPersona(p);
 	}
-	public Persona eliminarPersona(String rutPersona) {
+	public Persona personaEliminarPersona(String rutPersona) {
 		return personas.eliminarPersona(rutPersona);
 	}
 	
-	public Persona buscarPersona(String rutPersona){
+	public Persona personaBuscarPersona(String rutPersona){
 		return personas.buscarPersona(rutPersona);
 	}
-	public boolean modificarNombrePersona(String rutPersona, String input) {
+	public boolean personaModificarNombre(String rutPersona, String input) {
 		return personas.modificarNombrePersona(rutPersona, input);
 	}
 	
+	public boolean personaModificarFechaNacimiento(String rutPersona, String fechaNueva) {
+		return personas.modificarFechaNacimiento(rutPersona, fechaNueva);
+	}
+	
+	public boolean personaMayoriaEdad(String rutPersona) {
+		return personas.mayoriaEdad(rutPersona);
+	}
 	
 	
 	
-	public boolean existeTicket(String rutPersona, int id) {
+	public boolean personaExisteTicket(String rutPersona, int id) {
 		return personas.existeTicket(rutPersona, id);
 	}
 	
-	public boolean compraTicket(Ticket input) {
+	public boolean personaCompraTicket(Ticket input) {
 		return personas.compraTicket(input);
 	}
 	
-	public Ticket eliminarTicket(String rutPersona, int id) {
+	public Ticket personaEliminarTicket(String rutPersona, int id) {
 		return personas.eliminarTicket(rutPersona, id);
 	}
 	
-	public boolean modificarPrecio(String rutPersona, int id, int precio) {
+	public boolean personaModificarPrecio(String rutPersona, int id, int precio) {
 		return personas.modificarPrecio(rutPersona, id, precio);
+	}
+	
+	public boolean personaModificarFechaEvento(String rutPersona, int id, String fechaNueva) {
+		return personas.modificarFechaEvento(rutPersona, id, fechaNueva);
+	}
+	
+	public void personaModificarFechaEvento(String fechaNueva) {
+		personas.modificarFechaEvento(fechaNueva);
 	}
 	
 	public void readPersonasEvento(Connectar conexion) {
 		personas.readPersonasEvento(conexion, nombre);
 	}
 	
+	public void writePersonasEvento(Connectar conexion) {
+		personas.writePersonasEvento(conexion);
+	}
 	
 	
 	
-	public boolean agregarCupo(Cupo input) {
+	
+	public boolean cupoAgregarCupo(Cupo input) {
 		return asistentes.agregarCupo(input);
 	}
 	
-	public Cupo eliminarCupo(String asiento) {
+	public Cupo cupoEliminarCupo(String asiento) {
 		return asistentes.eliminarCupo(asiento);
 	}
 	
-	public boolean existeCupo(String asiento) {
+	public boolean cupoExisteCupo(String asiento) {
 		return asistentes.existeCupo(asiento);
 	}
 	
-	public boolean modificarDisponible(String asiento, boolean nuevo) {
+	public boolean cupoModificarDisponible(String asiento, boolean nuevo) {
 		return asistentes.modificarDisponible(asiento, nuevo);
 	}
 	
 	public void readResintoEvento(Connectar conexion) {
 		asistentes.readResintoEvento(conexion, nombre);
+	}
+	
+	public void writeResintoEvento(Connectar conexion) {
+		asistentes.writeResintoEvento(conexion);
 	}
 	
 }
