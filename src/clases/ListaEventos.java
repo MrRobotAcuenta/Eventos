@@ -180,7 +180,7 @@ public class ListaEventos {
 			return false;	//si no lo encontró, retorna false
 		}
 		
-		public boolean personaCompraTicket(String name, Ticket input) {
+		public boolean personaCompraTicket(String name, TicketCliente input) {
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();

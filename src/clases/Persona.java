@@ -1,9 +1,9 @@
 package clases;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
 
-public class Persona {
+public class Persona  {
 	private String rut;
 	private String nombre;
 	private Calendar fechaNacimiento;
@@ -51,7 +51,7 @@ public class Persona {
 		return tickets.existeTicket(id);
 	}
 	
-	public boolean compraTicket(Ticket input) {
+	public boolean compraTicket(TicketCliente input) {
 		return tickets.agregarTicket(input);
 	}
 	
@@ -107,5 +107,5 @@ public class Persona {
 	public void writeTicketVendidoPersona(Connectar conexion) {
 		tickets.writeTicketsVendidosPersona(conexion);
 	}
-	
+
 }

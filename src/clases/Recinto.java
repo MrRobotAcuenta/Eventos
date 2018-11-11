@@ -75,7 +75,7 @@ public class Recinto {
 				sitio.setAsiento(resultado.getString(2));
 				sitio.setDisponible(resultado.getBoolean(3));
 				lugar.add(sitio);
-				System.out.println(lugar.get(lugar.size()-1).getAsiento()+" "+lugar.get(lugar.size()-1).isDisponible());
+				System.out.println(lugar.get(lugar.size()-1).getAsiento()+" "+lugar.get(lugar.size()-1).getDisponible());
 			}
 		}
 		catch(SQLException e) {
@@ -90,7 +90,7 @@ public class Recinto {
 		for(int i=0;i<lugar.size();i++) {
 			sitio=new Cupo();
 			sitio=lugar.get(i);
-			if(sitio.isDisponible()) {
+			if(sitio.getDisponible()) {
 				disponible=1;
 			}
 			else {

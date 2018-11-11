@@ -108,7 +108,7 @@ public class ListaPersonas {
 		return false;
 	}
 	
-	public boolean compraTicket(Ticket input) {
+	public boolean compraTicket(TicketCliente input) {
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();

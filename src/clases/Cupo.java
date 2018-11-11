@@ -1,27 +1,23 @@
 package clases;
 
-public class Cupo {
+public class Cupo extends Ticket {
+	public Boolean disponible;
 	private String nameEvento;
-	private String asiento;
-	private boolean disponible;
-	//getters & setters
+	
 	public String getNameEvento() {
 		return nameEvento;
 	}
 	public void setNameEvento(String nombre) {
 		this.nameEvento = nombre;
 	}
-	public String getAsiento() {
-		return asiento;
-	}
-	public void setAsiento(String asiento) {
-		this.asiento = asiento;
-	}
-	public boolean isDisponible() {
+	public Boolean getDisponible() {
 		return disponible;
 	}
-	public void setDisponible(boolean disponible) {
+
+	public void setDisponible(Boolean disponible) {
 		this.disponible = disponible;
 	}
 	
+	
 }
+

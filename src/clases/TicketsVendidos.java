@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TicketsVendidos {
-	private ArrayList<Ticket> registro;
+	private ArrayList<TicketCliente> registro;
 	
 	public TicketsVendidos() {
-		registro = new ArrayList<Ticket>();
+		registro = new ArrayList<TicketCliente>();
 	}
 	
 	
@@ -23,10 +23,10 @@ public class TicketsVendidos {
 	}
 	
 	
-	public boolean agregarTicket(Ticket nuevo) {
-		Ticket entrada;
+	public boolean agregarTicket(TicketCliente nuevo) {
+		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
-			entrada=new Ticket();
+			entrada=new TicketCliente();
 			entrada=registro.get(i);
 			if(entrada.getIdTicket()==nuevo.getIdTicket()) {
 				return false;
@@ -37,10 +37,10 @@ public class TicketsVendidos {
 				
 	}
 	
-	public Ticket eliminarTicket(int id) {
-		Ticket entrada;
+	public TicketCliente eliminarTicket(int id) {
+		TicketCliente entrada;
 		for(int i=0; i<registro.size() ; i++) {
-			entrada=new Ticket();
+			entrada=new TicketCliente();
 			entrada=registro.get(i);
 			if(entrada.getIdTicket()==id) {
 				return registro.remove(i);
@@ -51,9 +51,9 @@ public class TicketsVendidos {
 	
 	
 	public boolean modificarPrecio(int id, int precio) {
-		Ticket entrada;
+		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
-			entrada=new Ticket();
+			entrada=new TicketCliente();
 			entrada=registro.get(i);
 			if(entrada.getIdTicket()==id) {
 				entrada.setPrecio(precio);
@@ -65,9 +65,9 @@ public class TicketsVendidos {
 	}
 	
 	public boolean modificarFechaTicket(int id, String fechaNueva) {
-		Ticket entrada;
+		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
-			entrada=new Ticket();
+			entrada=new TicketCliente();
 			entrada=registro.get(i);
 			if(entrada.getIdTicket()==id) {
 				entrada.setFechaEvento(fechaNueva);
@@ -79,9 +79,9 @@ public class TicketsVendidos {
 	}
 	
 	public void modificarFechaTicket(String fechaNueva) {
-		Ticket entrada;
+		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
-			entrada=new Ticket();
+			entrada=new TicketCliente();
 			entrada=registro.get(i);
 			entrada.setFechaEvento(fechaNueva);
 		}
@@ -90,12 +90,12 @@ public class TicketsVendidos {
 	
 	public void readTicketsVendidosPersona(Connectar conexion, String rut, String nameEvento) {
 		ResultSet resultado;
-		Ticket aux;
+		TicketCliente aux;
 		resultado=conexion.getQuery("select asiento, precio, fechaEvento, idTicket, nameEvento, rut from tickets inner join personas using (rut) where rut='"+rut+"' AND nameEvento='"+nameEvento+"'");
 		
 		try {
 			while(resultado.next()) {
-				aux=new Ticket();
+				aux=new TicketCliente();
 				aux.setAsiento(resultado.getString(1));
 				aux.setPrecio(resultado.getInt(2));
 				aux.setFechaEvento(resultado.getString(3));
@@ -114,9 +114,9 @@ public class TicketsVendidos {
 	}
 	
 	public void writeTicketsVendidosPersona(Connectar conexion) {
-		Ticket entrada;
+		TicketCliente entrada;
 		for(int i=0;i<registro.size();i++) {
-			entrada=new Ticket();
+			entrada=new TicketCliente();
 			entrada=registro.get(i);
 			conexion.setQuery("INSERT INTO `tickets` (`asiento`, `precio`, `fechaEvento`, `idTicket`, `nameEvento`, `rut`) VALUES ('" + entrada.getAsiento() + "', '" + entrada.getPrecio() + "', '" + entrada.getFechaEvento() + "', '" + entrada.getIdTicket() + "', '" + entrada.getNameEvento() + "', '" + entrada.getRut() + "') ON DUPLICATE KEY UPDATE asiento=VALUES(asiento), precio=VALUES(precio), fechaEvento=VALUES(fechaEvento), idTicket=VALUES(idTicket), nameEvento=VALUES(nameEvento), rut=VALUES(rut)");
 		}

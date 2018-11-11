@@ -3,7 +3,7 @@ package clases;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Evento {
+public class Evento  {
 	private String nombre;
 	private String tipo;
 	private boolean restriccion;
@@ -14,6 +14,7 @@ public class Evento {
 	
 	
 	//inicializa un evento
+	
 	public Evento() {
 		fecha= Calendar.getInstance();
 		personas=new ListaPersonas();
@@ -87,7 +88,7 @@ public class Evento {
 		return personas.existeTicket(rutPersona, id);
 	}
 	
-	public boolean personaCompraTicket(Ticket input) {
+	public boolean personaCompraTicket(TicketCliente input) {
 		return personas.compraTicket(input);
 	}
 	
