@@ -104,8 +104,5 @@ public class Persona  {
 		tickets.readTicketsVendidosPersona(conexion, rut, nameEvento);
 	}
 	
-	public void writeTicketVendidoPersona(Connectar conexion) {
-		tickets.writeTicketsVendidosPersona(conexion);
-	}
 
 }

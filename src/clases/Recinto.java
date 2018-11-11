@@ -1,63 +1,64 @@
 package clases;
 
+import clases.Connectar;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Recinto {
-	private ArrayList<Cupo> lugar;
+	private Map<String, Cupo> lugar;
 	
 	public Recinto() {
-		lugar = new ArrayList<Cupo>();
+		lugar = new HashMap<String, Cupo>();
 	}
 	
 	public boolean agregarCupo(Cupo nuevo) {
-		Cupo aux_cupo;
-		for(int i=0; i<lugar.size();i++) {
-			aux_cupo=new Cupo();
-			aux_cupo=lugar.get(i);
-			if(aux_cupo.getAsiento().equals(nuevo.getAsiento())) {
-				return false;
-			}
+		Connectar conexion=new Connectar();
+		String asiento=nuevo.getAsiento();
+		if(lugar.containsKey(asiento)) {
+			return false;
 		}
-		lugar.add(nuevo);
+		lugar.put(asiento, nuevo);
+		
+		int disponible=0;			// Esto se utiliza para facilitar el traspaso del boolean a la BD
+		if(nuevo.getDisponible()) {
+			disponible=1;
+		}
+		else {
+			disponible=0;
+		}
+		conexion.setQuery("INSERT INTO `cupo` (`nameEvento`, `asiento`, `disponible`) VALUES ('" + nuevo.getNameEvento() + "', '" + nuevo.getAsiento() + "', '" + disponible + "')");
 		return true;
 	}
 	
-	public Cupo eliminarCupo(String asiento) {	
-		Cupo aux_cupo;
-		for(int i=0; i<lugar.size();i++) {
-			aux_cupo=new Cupo();
-			aux_cupo=lugar.get(i);
-			if(aux_cupo.getAsiento().equals(asiento)) {
-				return lugar.remove(i);
-			}
-		}
-		return null;
+	public Cupo eliminarCupo(String asiento) {
+		Connectar conexion=new Connectar();
+		conexion.setQuery("DELETE FROM `cupo` WHERE asiento='" + asiento + "'");
+		return lugar.remove(asiento);
 	}
 	
 	public boolean existeCupo(String asiento) {
-		Cupo aux_cupo;
-		for(int i=0; i<lugar.size(); i++) {
-			aux_cupo=new Cupo();
-			aux_cupo=lugar.get(i);
-			if(aux_cupo.getAsiento().equals(asiento)) {
-					return true;
-			}
-		}
-		return false;
+		return lugar.containsKey(asiento);
 	}
 	
 	public boolean modificarDisponible(String asiento, boolean nuevo) {
-		Cupo aux_cupo;
-		for(int i=0; i< lugar.size(); i++) {
-			aux_cupo=new Cupo();
-			aux_cupo=lugar.get(i);
-			if(aux_cupo.getAsiento().equals(asiento)) {
-				aux_cupo.setDisponible(nuevo);
-				return true;
+		Connectar conexion=new Connectar();
+		Cupo sitio=new Cupo();
+		sitio=lugar.get(asiento);
+		if(sitio!=null) {
+			sitio.setDisponible(nuevo);
+			
+			int disponible=0;			// Esto se utiliza para facilitar el traspaso del boolean a la BD
+			if(nuevo) {
+				disponible=1;
 			}
+			else {
+				disponible=0;
+			}
+			conexion.setQuery("UPDATE `cupo` SET disponible='" + disponible + "' WHERE asiento='" + asiento + "'");
+			return true;			
 		}
 		return false;
 	}
@@ -66,6 +67,7 @@ public class Recinto {
 	public void readResintoEvento(Connectar conexion, String nameEvento) {
 		ResultSet resultado;
 		Cupo sitio;
+		String key;
 		resultado=conexion.getQuery("select nameEvento, asiento, disponible from cupo inner join eventos using (nameEvento) where nameEvento='"+nameEvento+"'");
 		
 		try {
@@ -73,9 +75,10 @@ public class Recinto {
 				sitio=new Cupo();
 				sitio.setNameEvento(resultado.getString(1));
 				sitio.setAsiento(resultado.getString(2));
+				key=sitio.getAsiento();
 				sitio.setDisponible(resultado.getBoolean(3));
-				lugar.add(sitio);
-				System.out.println(lugar.get(lugar.size()-1).getAsiento()+" "+lugar.get(lugar.size()-1).getDisponible());
+				lugar.put(key, sitio);
+				System.out.println(lugar.get(key).getAsiento()+" "+lugar.get(key).getDisponible());
 			}
 		}
 		catch(SQLException e) {
@@ -84,21 +87,6 @@ public class Recinto {
 		}
 	}
 	
-	public void writeResintoEvento(Connectar conexion) {
-		Cupo sitio;
-		int disponible=0;
-		for(int i=0;i<lugar.size();i++) {
-			sitio=new Cupo();
-			sitio=lugar.get(i);
-			if(sitio.getDisponible()) {
-				disponible=1;
-			}
-			else {
-				disponible=0;
-			}
-			conexion.setQuery("INSERT INTO `cupo` (`nameEvento`, `asiento`, `disponible`) VALUES ('" + sitio.getNameEvento() + "', '" + sitio.getAsiento() + "', '" + disponible + "') ON DUPLICATE KEY UPDATE nameEvento=VALUES(nameEvento), asiento=VALUES(asiento), disponible=VALUES(disponible)");
-		}
-		
-	}
+	
 	
 }

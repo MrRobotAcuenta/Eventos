@@ -1,5 +1,6 @@
 package clases;
 
+import clases.Connectar;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,6 +25,7 @@ public class TicketsVendidos {
 	
 	
 	public boolean agregarTicket(TicketCliente nuevo) {
+		Connectar conexion=new Connectar();
 		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
 			entrada=new TicketCliente();
@@ -33,16 +35,19 @@ public class TicketsVendidos {
 			}
 		}
 		registro.add(nuevo);
+		conexion.setQuery("INSERT INTO `tickets` (`asiento`, `precio`, `fechaEvento`, `idTicket`, `nameEvento`, `rut`) VALUES ('" + nuevo.getAsiento() + "', '" + nuevo.getPrecio() + "', '" + nuevo.getFechaEvento() + "', '" + nuevo.getIdTicket() + "', '" + nuevo.getNameEvento() + "', '" + nuevo.getRut() + "')");
 		return true;
 				
 	}
 	
 	public TicketCliente eliminarTicket(int id) {
+		Connectar conexion=new Connectar();
 		TicketCliente entrada;
 		for(int i=0; i<registro.size() ; i++) {
 			entrada=new TicketCliente();
 			entrada=registro.get(i);
 			if(entrada.getIdTicket()==id) {
+				conexion.setQuery("DELETE FROM `tickets` WHERE idTicket='" + id + "'");
 				return registro.remove(i);
 			}
 		}
@@ -51,12 +56,14 @@ public class TicketsVendidos {
 	
 	
 	public boolean modificarPrecio(int id, int precio) {
+		Connectar conexion=new Connectar();
 		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
 			entrada=new TicketCliente();
 			entrada=registro.get(i);
 			if(entrada.getIdTicket()==id) {
 				entrada.setPrecio(precio);
+				conexion.setQuery("UPDATE `tickets` SET precio='" + precio + "' WHERE idTicket='" + id + "'");
 				return true;
 			}
 		}
@@ -65,12 +72,14 @@ public class TicketsVendidos {
 	}
 	
 	public boolean modificarFechaTicket(int id, String fechaNueva) {
+		Connectar conexion=new Connectar();
 		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
 			entrada=new TicketCliente();
 			entrada=registro.get(i);
 			if(entrada.getIdTicket()==id) {
 				entrada.setFechaEvento(fechaNueva);
+				conexion.setQuery("UPDATE `tickets` SET fechaEvento='" + fechaNueva + "' WHERE idTicket='" + id + "'");
 				return true;
 			}
 		}
@@ -79,11 +88,13 @@ public class TicketsVendidos {
 	}
 	
 	public void modificarFechaTicket(String fechaNueva) {
+		Connectar conexion=new Connectar();
 		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
 			entrada=new TicketCliente();
 			entrada=registro.get(i);
 			entrada.setFechaEvento(fechaNueva);
+			conexion.setQuery("UPDATE `tickets` SET fechaEvento='" + fechaNueva + "' WHERE idTicket='" + entrada.getIdTicket() + "'");
 		}
 	}
 	
@@ -113,12 +124,4 @@ public class TicketsVendidos {
 		}
 	}
 	
-	public void writeTicketsVendidosPersona(Connectar conexion) {
-		TicketCliente entrada;
-		for(int i=0;i<registro.size();i++) {
-			entrada=new TicketCliente();
-			entrada=registro.get(i);
-			conexion.setQuery("INSERT INTO `tickets` (`asiento`, `precio`, `fechaEvento`, `idTicket`, `nameEvento`, `rut`) VALUES ('" + entrada.getAsiento() + "', '" + entrada.getPrecio() + "', '" + entrada.getFechaEvento() + "', '" + entrada.getIdTicket() + "', '" + entrada.getNameEvento() + "', '" + entrada.getRut() + "') ON DUPLICATE KEY UPDATE asiento=VALUES(asiento), precio=VALUES(precio), fechaEvento=VALUES(fechaEvento), idTicket=VALUES(idTicket), nameEvento=VALUES(nameEvento), rut=VALUES(rut)");
-		}
-	}
 }

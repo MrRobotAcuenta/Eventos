@@ -1,5 +1,6 @@
 package clases;
 
+import clases.Connectar;
 import java.util.*;
 import java.io.*;
 import java.sql.ResultSet;
@@ -28,6 +29,7 @@ public class ListaEventos {
 
 		//ingresa un Evento a la lista de Evento
 		public boolean agregarEvento(Evento input) {
+			Connectar conexion=new Connectar();
 			Evento aux_evento;
 			for(int i=0; i<eventos.size();i++) {
 				aux_evento=new Evento();
@@ -37,16 +39,26 @@ public class ListaEventos {
 				}
 			}
 			eventos.add(input);
+			int restriccion=0;			// Esto se utiliza para facilitar el traspaso del boolean a la BD
+			if(input.isRestriccion()) {
+				restriccion=1;
+			}
+			else {
+				restriccion=0;
+			}
+			conexion.setQuery("INSERT INTO `eventos` (`nameEvento`, `tipo`, `restriccion`, `lugar`, `fecha`) VALUES ('" + input.getNombre() + "', '" + input.getTipo() + "', '" + restriccion + "', '" + input.getLugar() + "', '" + input.getFecha() + "')");
 			return true;
 		}
 		
 		//eliminar un Evento de la lista de Eventos
 		public Evento removeEvento(String name) {
+			Connectar conexion=new Connectar();
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
 				aux_evento=eventos.get(i);
 				if(aux_evento.getNombre().equals(name)) {
+					conexion.setQuery("DELETE FROM `eventos` WHERE nameEvento='" + name + "'");
 					return eventos.remove(i);
 				}
 			}
@@ -54,39 +66,53 @@ public class ListaEventos {
 		}
 		
 		public void modificarTipoEvento(String name, String input) {
+			Connectar conexion=new Connectar();
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
 				aux_evento=eventos.get(i);
 				if(aux_evento.getNombre().equals(name)) {
 					aux_evento.setTipo(input);
+					conexion.setQuery("UPDATE `eventos` SET tipo='" + input + "' WHERE nameEvento='" + name + "'");
 				}
 			}
 		}
 		
 		public void modificarRestriccion(String name, boolean input) {
+			Connectar conexion=new Connectar();
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
 				aux_evento=eventos.get(i);
 				if(aux_evento.getNombre().equals(name)) {
 					aux_evento.setRestriccion(input);
+					int restriccion=0;			// Esto se utiliza para facilitar el traspaso del boolean a la BD
+					if(input) {
+						restriccion=1;
+					}
+					else {
+						restriccion=0;
+					}
+					conexion.setQuery("UPDATE `eventos` SET restriccion='" + restriccion + "' WHERE nameEvento='" + name + "'");
 				}
 			}
 		}
 		
 		public void modificarLugarEvento(String name, String input) {
+			Connectar conexion=new Connectar();
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
 				aux_evento=eventos.get(i);
 				if(aux_evento.getNombre().equals(name)) {
 					aux_evento.setLugar(input);
+					conexion.setQuery("UPDATE `eventos` SET lugar='" + input + "' WHERE nameEvento='" + name + "'");
 				}
 			}
 		}
 		
 		public boolean modificarFechaEvento(String name, String fechaNueva) {
+			Connectar conexion=new Connectar();
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
@@ -94,6 +120,7 @@ public class ListaEventos {
 				if(aux_evento.getNombre().equals(name)) {
 					aux_evento.setFecha(fechaNueva);
 					aux_evento.personaModificarFechaEvento(fechaNueva);
+					conexion.setQuery("UPDATE `eventos` SET fecha='" + fechaNueva + "' WHERE nameEvento='" + name + "'");
 					return true;
 				}
 			}
@@ -360,21 +387,5 @@ public class ListaEventos {
 			}
 		}
 		
-		public void writeListaEventos(Connectar conexion) {
-			Evento aux_evento;
-			int restriccion=0;
-			for(int i=0;i<eventos.size();i++) {
-				aux_evento=new Evento();
-				aux_evento=eventos.get(i);
-				if(aux_evento.isRestriccion()) {
-					restriccion=1;
-				}
-				else {
-					restriccion=0;
-				}
-				conexion.setQuery("INSERT INTO `eventos` (`nameEvento`, `tipo`, `restriccion`, `lugar`, `fecha`) VALUES ('" + aux_evento.getNombre() + "', '" + aux_evento.getTipo() + "', '" + restriccion + "', '" + aux_evento.getLugar() + "', '" + aux_evento.getFecha() + "') ON DUPLICATE KEY UPDATE nameEvento=VALUES(nameEvento), tipo=VALUES(tipo), restriccion=VALUES(restriccion), lugar=VALUES(lugar), fecha=VALUES(fecha)");
-				aux_evento.writePersonasEvento(conexion);
-				aux_evento.writeResintoEvento(conexion);
-			}
-		}
+		
 }

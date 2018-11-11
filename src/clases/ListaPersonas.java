@@ -1,5 +1,6 @@
 package clases;
 
+import clases.Connectar;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,11 +15,13 @@ public class ListaPersonas {
 	
 	
 	public Persona eliminarPersona(String rutPersona) {
+		Connectar conexion=new Connectar();
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();
 			asistente=listaPersonas.get(i);
 			if(asistente.getRut().equals(rutPersona)) {
+				conexion.setQuery("DELETE FROM `personas` WHERE rut='" + rutPersona + "'");
 				return listaPersonas.remove(i);
 			}
 		}
@@ -39,6 +42,7 @@ public class ListaPersonas {
 	}
 	
 	public boolean nuevaPersona(Persona p) {
+		Connectar conexion=new Connectar();
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente = new Persona();
@@ -49,16 +53,19 @@ public class ListaPersonas {
 		}
 		//nuevaPersona.setFechaNacimiento(fechaNacimiento);
 		listaPersonas.add(p);
+		conexion.setQuery("INSERT INTO `personas` (`rut`, `fechaNacimiento`, `nombre`) VALUES ('" + p.getRut() + "', '" + p.getFechaNacimiento() + "', '" + p.getNombre() + "')");
 		return true;
 	}
 	
 	public boolean modificarNombrePersona(String rutPersona, String input) {
+		Connectar conexion=new Connectar();
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();
 			asistente=listaPersonas.get(i);
 			if(asistente.getRut().equals(rutPersona)) {
 				asistente.setNombre(input);
+				conexion.setQuery("UPDATE `personas` SET nombre='" + input + "' WHERE rut='" + rutPersona + "'");
 				return true;
 			}
 		}
@@ -66,12 +73,14 @@ public class ListaPersonas {
 	}
 	
 	public boolean modificarFechaNacimiento(String rutPersona, String fechaNueva) {
+		Connectar conexion=new Connectar();
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();
 			asistente=listaPersonas.get(i);
 			if(asistente.getRut().equals(rutPersona)) {
 				asistente.setFechaNacimiento(fechaNueva);
+				conexion.setQuery("UPDATE `personas` SET fechaNacimiento='" + fechaNueva + "' WHERE rut='" + rutPersona + "'");
 				return true;
 			}
 		}
@@ -196,14 +205,5 @@ public class ListaPersonas {
 		}
 	}
 	
-	public void writePersonasEvento(Connectar conexion) {
-		Persona asistente;
-		for(int i=0;i<listaPersonas.size();i++) {
-			asistente=new Persona();
-			asistente=listaPersonas.get(i);
-			conexion.setQuery("INSERT INTO `personas` (`rut`, `fechaNacimiento`, `nombre`) VALUES ('" + asistente.getRut() + "', '" + asistente.getFechaNacimiento() + "', '" + asistente.getNombre() + "') ON DUPLICATE KEY UPDATE rut=VALUES(rut), fechaNacimiento=VALUES(fechaNacimiento), nombre=VALUES(nombre)");
-			asistente.writeTicketVendidoPersona(conexion);
-		}
-	}
 	
 }

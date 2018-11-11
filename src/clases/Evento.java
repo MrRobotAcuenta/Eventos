@@ -112,9 +112,6 @@ public class Evento  {
 		personas.readPersonasEvento(conexion, nombre);
 	}
 	
-	public void writePersonasEvento(Connectar conexion) {
-		personas.writePersonasEvento(conexion);
-	}
 	
 	
 	
@@ -139,8 +136,5 @@ public class Evento  {
 		asistentes.readResintoEvento(conexion, nombre);
 	}
 	
-	public void writeResintoEvento(Connectar conexion) {
-		asistentes.writeResintoEvento(conexion);
-	}
 	
 }
