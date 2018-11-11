@@ -10,7 +10,7 @@ public class TicketCliente extends Ticket {
 	private int idTicket;
 	private String nameEvento;
 	private String rut;
-	
+
 	public TicketCliente() {
 		fechaEvento= Calendar.getInstance();
 	}
@@ -49,10 +49,10 @@ public class TicketCliente extends Ticket {
 		String[] array = fechaNueva.split("/");
 		fechaEvento.set(Integer.parseInt(array[2]), Integer.parseInt(array[1])-1, Integer.parseInt(array[0]));
 	}
-	
-	
-	
-	public int setIdTicket() {
+
+
+
+	/*public int setIdTicket() {
 		int numero;
 		numero = (int) (Math.random() * 9999999) + 1;
 		idTicket = numero;
@@ -60,10 +60,10 @@ public class TicketCliente extends Ticket {
 	}
 	public int getIdTicket() {
 		return idTicket;
-	}
-	
-	
-	
-	
-	
+	}*/
+
+
+
+
+
 }
