@@ -5,8 +5,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.VentanaPrincipalController">
    <children>
-      <Button fx:id="btnClientes" layoutX="268.0" layoutY="185.0" mnemonicParsing="false" text="Clientes" />
-      <Button fx:id="btnEventos" layoutX="268.0" layoutY="108.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="73.0" text="Eventos" />
-      <Button fx:id="btnTickets" layoutX="268.0" layoutY="257.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="73.0" text="Tickets" />
+      <Button fx:id="btnClientes" layoutX="268.0" layoutY="185.0" mnemonicParsing="false" onAction="#botonIrCliente" text="Clientes" />
+      <Button fx:id="btnEventos" layoutX="268.0" layoutY="108.0" mnemonicParsing="false" onAction="#botonIrEvento" prefHeight="31.0" prefWidth="73.0" text="Eventos" />
+      <Button fx:id="btnTickets" layoutX="268.0" layoutY="257.0" mnemonicParsing="false" onAction="#botonIrTicket" prefHeight="31.0" prefWidth="73.0" text="Tickets" />
    </children>
 </AnchorPane>
