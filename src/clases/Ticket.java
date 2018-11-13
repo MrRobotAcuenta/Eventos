@@ -1,16 +1,16 @@
 package clases;
 
 public abstract class Ticket {
-	private int id;
+	//private int id;
 	private String asiento;
 	
 	
-	public int getId() {
+	/*public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
+	}*/
 	public String getAsiento() {
 		return asiento;
 	}

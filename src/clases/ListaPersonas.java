@@ -105,7 +105,7 @@ public class ListaPersonas {
 	 */
 	
 	
-	public boolean existeTicket(String rutPersona, int id) {
+	public boolean existeTicket(String rutPersona, String id) {
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();
@@ -130,7 +130,7 @@ public class ListaPersonas {
 		return false;
 	}
 	
-	public Ticket eliminarTicket(String rutPersona, int id) {
+	public Ticket eliminarTicket(String rutPersona, String id) {
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();
@@ -142,7 +142,7 @@ public class ListaPersonas {
 		return null;
 	}
 	
-	public boolean modificarPrecio(String rutPersona, int id, int precio) {
+	public boolean modificarPrecio(String rutPersona, String id, int precio) {
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();
@@ -154,7 +154,7 @@ public class ListaPersonas {
 		return false;
 	}
 	
-	public boolean modificarFechaEvento(String rutPersona, int id, String fechaNueva) {
+	public boolean modificarFechaEvento(String rutPersona, String id, String fechaNueva) {
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();

@@ -14,12 +14,11 @@ public class VentanaPrincipalController  {
 
     @FXML
     private Button btnClientes;
-
     @FXML
     private Button btnEventos;
-
     @FXML
     private Button btnTickets;
+    private int posicionTabla;
 
     @FXML
     void botonIrCliente(ActionEvent event) throws IOException {

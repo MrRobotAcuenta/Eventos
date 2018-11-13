@@ -195,7 +195,7 @@ public class ListaEventos {
 			return false;	//si no lo encontró, retorna false
 		}
 		
-		public boolean personaExisteTicket(String name, String rutPersona, int id) {
+		public boolean personaExisteTicket(String name, String rutPersona, String id) {
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
@@ -219,7 +219,7 @@ public class ListaEventos {
 			return false;	//si no lo encontró, retorna false
 		}
 		
-		public Ticket personaEliminarTicket(String name, String rutPersona, int id) {
+		public Ticket personaEliminarTicket(String name, String rutPersona, String id) {
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
@@ -231,7 +231,7 @@ public class ListaEventos {
 			return null;	//si no lo encontró, retorna null
 		}
 		
-		public boolean personaModificarPrecioTicket(String name, String rutPersona, int id, int precio) {
+		public boolean personaModificarPrecioTicket(String name, String rutPersona, String id, int precio) {
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
@@ -243,7 +243,7 @@ public class ListaEventos {
 			return false;	//si no lo encontró, retorna false
 		}
 		
-		public boolean personaModificarFechaEvento(String name, String rutPersona, int id, String fechaNueva) {
+		public boolean personaModificarFechaEvento(String name, String rutPersona, String id, String fechaNueva) {
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();

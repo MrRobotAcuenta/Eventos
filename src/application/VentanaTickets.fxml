@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,14 +14,14 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView prefHeight="598.0" prefWidth="555.0">
+                  <TableView fx:id="tablaTickets" prefHeight="598.0" prefWidth="555.0">
                     <columns>
-                      <TableColumn prefWidth="92.0" text="Asiento" />
-                      <TableColumn prefWidth="86.0" text="Precio" />
-                        <TableColumn prefWidth="112.0" text="Fecha" />
-                        <TableColumn prefWidth="70.0" text="id" />
-                        <TableColumn prefWidth="95.0" text="Evento" />
-                        <TableColumn prefWidth="99.0" text="Rut Cliente" />
+                      <TableColumn fx:id="asientoCl" prefWidth="92.0" text="Asiento" />
+                      <TableColumn fx:id="precioCL" prefWidth="86.0" text="Precio" />
+                        <TableColumn fx:id="fechaCl" prefWidth="112.0" text="Fecha" />
+                        <TableColumn fx:id="idCL" prefWidth="70.0" text="id" />
+                        <TableColumn fx:id="eventoCL" prefWidth="95.0" text="Evento" />
+                        <TableColumn fx:id="rutCL" prefWidth="99.0" text="Rut Cliente" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -34,10 +33,10 @@
                <children>
                   <TextField fx:id="asientoTF" layoutX="24.0" layoutY="34.0" />
                   <TextField fx:id="precioTF" layoutX="24.0" layoutY="86.0" />
-                  <Button fx:id="agregarBtn" layoutX="85.0" layoutY="421.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="83.0" text="Agregar" />
-                  <Button fx:id="modificarBtn" layoutX="85.0" layoutY="452.0" mnemonicParsing="false" text="Modificar" />
-                  <Button fx:id="eliminarBtn" layoutX="85.0" layoutY="483.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="83.0" text="Eliminar" />
-                  <Button fx:id="NuevoBtn" layoutX="85.0" layoutY="514.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="83.0" text="Nuevo" />
+                  <Button fx:id="agregarBtn" layoutX="85.0" layoutY="421.0" mnemonicParsing="false" onAction="#agregar" prefHeight="31.0" prefWidth="83.0" text="Agregar" />
+                  <Button fx:id="modificarBtn" layoutX="85.0" layoutY="452.0" mnemonicParsing="false" onAction="#modificar" text="Modificar" />
+                  <Button fx:id="eliminarBtn" layoutX="85.0" layoutY="483.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="31.0" prefWidth="83.0" text="Eliminar" />
+                  <Button fx:id="NuevoBtn" layoutX="85.0" layoutY="514.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="31.0" prefWidth="83.0" text="Nuevo" />
                   <Text layoutX="24.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Asiento" />
                   <Text layoutX="28.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha:" />
                   <Text layoutX="23.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio:" />
@@ -47,7 +46,7 @@
                   <Text layoutX="23.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Evento:" />
                   <Text layoutX="23.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rut Cliente" />
                   <TextField fx:id="rutTF" layoutX="24.0" layoutY="294.0" />
-                  <DatePicker fx:id="fechaDateP" layoutX="18.0" layoutY="133.0" />
+                  <TextField fx:id="fechaEventoTF" layoutX="24.0" layoutY="138.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

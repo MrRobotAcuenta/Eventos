@@ -7,7 +7,7 @@ public class TicketCliente extends Ticket {
 	private String asiento;
 	private int precio;
 	private Calendar fechaEvento;
-	private int idTicket;
+	private String idTicket;
 	private String nameEvento;
 	private String rut;
 
@@ -32,7 +32,7 @@ public class TicketCliente extends Ticket {
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
-	public void setIdTicket(int id) {
+	public void setIdTicket(String id) {
 		idTicket=id;
 	}
 	public String getRut() {
@@ -52,15 +52,16 @@ public class TicketCliente extends Ticket {
 
 
 
-	/*public int setIdTicket() {
+	public String setIdTicket() {
 		int numero;
+		String codigo;
 		numero = (int) (Math.random() * 9999999) + 1;
-		idTicket = numero;
+		codigo = Integer.toString(numero);
+		return codigo;
+	}
+	public String getIdTicket() {
 		return idTicket;
 	}
-	public int getIdTicket() {
-		return idTicket;
-	}*/
 
 
 

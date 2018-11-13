@@ -13,7 +13,7 @@ public class TicketsVendidos {
 	}
 	
 	
-	public boolean existeTicket(int id) {
+	public boolean existeTicket(String id) {
 		for(int i=0; i< registro.size(); i++) {
 			if(registro.get(i).getIdTicket()==id) {
 				return true;
@@ -40,7 +40,7 @@ public class TicketsVendidos {
 				
 	}
 	
-	public TicketCliente eliminarTicket(int id) {
+	public TicketCliente eliminarTicket(String id) {
 		Connectar conexion=new Connectar();
 		TicketCliente entrada;
 		for(int i=0; i<registro.size() ; i++) {
@@ -55,7 +55,7 @@ public class TicketsVendidos {
 	}
 	
 	
-	public boolean modificarPrecio(int id, int precio) {
+	public boolean modificarPrecio(String id, int precio) {
 		Connectar conexion=new Connectar();
 		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
@@ -71,7 +71,7 @@ public class TicketsVendidos {
 		return false;
 	}
 	
-	public boolean modificarFechaTicket(int id, String fechaNueva) {
+	public boolean modificarFechaTicket(String id, String fechaNueva) {
 		Connectar conexion=new Connectar();
 		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
@@ -110,7 +110,7 @@ public class TicketsVendidos {
 				aux.setAsiento(resultado.getString(1));
 				aux.setPrecio(resultado.getInt(2));
 				aux.setFechaEvento(resultado.getString(3));
-				aux.setIdTicket(resultado.getInt(4));
+				aux.setIdTicket(resultado.getString(4));
 				aux.setNameEvento(resultado.getString(5));
 				aux.setRut(resultado.getString(6));
 				

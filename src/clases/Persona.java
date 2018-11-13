@@ -47,7 +47,7 @@ public class Persona  {
 	 */
 	
 	
-	public boolean existeTicket(int id) {
+	public boolean existeTicket(String id) {
 		return tickets.existeTicket(id);
 	}
 	
@@ -56,15 +56,15 @@ public class Persona  {
 	}
 	
 	
-	public Ticket eliminarTicket(int id) {
+	public Ticket eliminarTicket(String id) {
 		return tickets.eliminarTicket(id);
 	}
 	
-	public boolean modificarPrecio(int id, int precio) {
+	public boolean modificarPrecio(String id, int precio) {
 		return tickets.modificarPrecio(id, precio);
 	}
 	
-	public boolean modificarFechaTicket(int id, String fechaNueva) {
+	public boolean modificarFechaTicket(String id, String fechaNueva) {
 		return tickets.modificarFechaTicket(id, fechaNueva);
 	}
 	

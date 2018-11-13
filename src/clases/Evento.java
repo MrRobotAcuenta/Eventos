@@ -84,7 +84,7 @@ public class Evento  {
 	
 	
 	
-	public boolean personaExisteTicket(String rutPersona, int id) {
+	public boolean personaExisteTicket(String rutPersona, String id) {
 		return personas.existeTicket(rutPersona, id);
 	}
 	
@@ -92,15 +92,15 @@ public class Evento  {
 		return personas.compraTicket(input);
 	}
 	
-	public Ticket personaEliminarTicket(String rutPersona, int id) {
+	public Ticket personaEliminarTicket(String rutPersona, String id) {
 		return personas.eliminarTicket(rutPersona, id);
 	}
 	
-	public boolean personaModificarPrecio(String rutPersona, int id, int precio) {
+	public boolean personaModificarPrecio(String rutPersona, String id, int precio) {
 		return personas.modificarPrecio(rutPersona, id, precio);
 	}
 	
-	public boolean personaModificarFechaEvento(String rutPersona, int id, String fechaNueva) {
+	public boolean personaModificarFechaEvento(String rutPersona, String id, String fechaNueva) {
 		return personas.modificarFechaEvento(rutPersona, id, fechaNueva);
 	}
 	
