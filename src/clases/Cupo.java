@@ -17,6 +17,11 @@ public class Cupo extends Ticket {
 	public void setDisponible(Boolean disponible) {
 		this.disponible = disponible;
 	}
+	@Override
+	public int descuento() {
+		//da descuento a las primeras entradas en stock
+		return 0;
+	}
 	
 	
 }

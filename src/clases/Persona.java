@@ -43,9 +43,7 @@ public class Persona  {
 	}
 	
 	
-	/*
-	 Metodos para manipular datos de la lista tickets
-	 */
+	
 	
 	
 	public boolean existeTicket(String id) {
@@ -74,9 +72,7 @@ public class Persona  {
 	}
 	
 	
-	/*
-	 Fin metodos lista Tickets
-	 */
+	
 	
 	public boolean mayoriaEdad()
 	{
@@ -107,3 +103,4 @@ public class Persona  {
 	
 
 }
+

@@ -62,6 +62,11 @@ public class TicketCliente extends Ticket {
 	public String getIdTicket() {
 		return idTicket;
 	}
+	@Override
+	public int descuento() {
+		// suma el descuento del cupo con el descuento propio
+		return 0;
+	}
 
 
 
