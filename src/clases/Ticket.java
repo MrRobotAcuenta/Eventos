@@ -17,4 +17,5 @@ public abstract class Ticket {
 	public void setAsiento(String asiento) {
 		this.asiento = asiento;
 	}
+	public abstract int descuento();
 }

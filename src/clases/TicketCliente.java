@@ -62,6 +62,11 @@ public class TicketCliente extends Ticket {
 	public String getIdTicket() {
 		return idTicket;
 	}
+	@Override
+	public int descuento() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 
 
