@@ -18,7 +18,6 @@ public class VentanaPrincipalController  {
     private Button btnEventos;
     @FXML
     private Button btnTickets;
-    
     private int posicionTabla;
 
     @FXML

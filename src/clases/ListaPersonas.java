@@ -1,6 +1,5 @@
 package clases;
 
-import clases.Connectar;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public class ListaPersonas {
 	
 	
 	public Persona eliminarPersona(String rutPersona) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();
@@ -42,7 +41,7 @@ public class ListaPersonas {
 	}
 	
 	public boolean nuevaPersona(Persona p) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente = new Persona();
@@ -58,7 +57,7 @@ public class ListaPersonas {
 	}
 	
 	public boolean modificarNombrePersona(String rutPersona, String input) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();
@@ -73,7 +72,7 @@ public class ListaPersonas {
 	}
 	
 	public boolean modificarFechaNacimiento(String rutPersona, String fechaNueva) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		Persona asistente;
 		for(int i=0;i<listaPersonas.size();i++) {
 			asistente=new Persona();
@@ -182,7 +181,8 @@ public class ListaPersonas {
 	 */
 	
 	
-	public void readPersonasEvento(Connectar conexion, String nameEvento) {
+	public void readPersonasEvento(String nameEvento) {
+		Connectar conexion=BDsingleton.getConnexion();
 		ResultSet resultado;
 		Persona aux;
 		resultado=conexion.getQuery("select DISTINCT rut, fechaNacimiento, nombre from personas inner join tickets using (rut) inner join eventos using (nameEvento) where nameEvento='"+nameEvento+"'");
@@ -194,7 +194,7 @@ public class ListaPersonas {
 				aux.setFechaNacimiento(resultado.getString(2));
 				aux.setNombre(resultado.getString(3));
 				
-				aux.readTicketVendidoPersona(conexion, nameEvento);
+				aux.readTicketVendidoPersona(nameEvento);
 				listaPersonas.add(aux);
 				System.out.println(listaPersonas.get(listaPersonas.size()-1).getNombre());
 			}

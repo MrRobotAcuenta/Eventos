@@ -1,10 +1,9 @@
 package clases;
 
-import clases.Connectar;
+
 import java.util.*;
 import java.io.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ListaEventos {
 	private ArrayList<Evento> eventos;
@@ -29,7 +28,6 @@ public class ListaEventos {
 
 		//ingresa un Evento a la lista de Evento
 		public boolean agregarEvento(Evento input) {
-			Connectar conexion=new Connectar();
 			Evento aux_evento;
 			for(int i=0; i<eventos.size();i++) {
 				aux_evento=new Evento();
@@ -39,26 +37,18 @@ public class ListaEventos {
 				}
 			}
 			eventos.add(input);
-			int restriccion=0;			// Esto se utiliza para facilitar el traspaso del boolean a la BD
-			if(input.isRestriccion()) {
-				restriccion=1;
-			}
-			else {
-				restriccion=0;
-			}
-			conexion.setQuery("INSERT INTO `eventos` (`nameEvento`, `tipo`, `restriccion`, `lugar`, `fecha`) VALUES ('" + input.getNombre() + "', '" + input.getTipo() + "', '" + restriccion + "', '" + input.getLugar() + "', '" + input.getFecha() + "')");
+			//agregarEventoBD(input);
 			return true;
 		}
 		
 		//eliminar un Evento de la lista de Eventos
 		public Evento removeEvento(String name) {
-			Connectar conexion=new Connectar();
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
 				aux_evento=eventos.get(i);
 				if(aux_evento.getNombre().equals(name)) {
-					conexion.setQuery("DELETE FROM `eventos` WHERE nameEvento='" + name + "'");
+					removeEventoBD(name);
 					return eventos.remove(i);
 				}
 			}
@@ -79,7 +69,7 @@ public class ListaEventos {
 		}
 		
 		public void modificarRestriccion(String name, boolean input) {
-			Connectar conexion=new Connectar();
+			Connectar conexion=BDsingleton.getConnexion();
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
@@ -99,7 +89,7 @@ public class ListaEventos {
 		}
 		
 		public void modificarLugarEvento(String name, String input) {
-			Connectar conexion=new Connectar();
+			Connectar conexion=BDsingleton.getConnexion();
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
@@ -112,7 +102,7 @@ public class ListaEventos {
 		}
 		
 		public boolean modificarFechaEvento(String name, String fechaNueva) {
-			Connectar conexion=new Connectar();
+			Connectar conexion=BDsingleton.getConnexion();
 			Evento aux_evento;
 			for(int i=0;i<eventos.size();i++) {
 				aux_evento=new Evento();
@@ -362,7 +352,8 @@ public class ListaEventos {
 			}
 		}
 		
-		public void readListaEventos(Connectar conexion) {
+		public void readListaEventos() {
+			Connectar conexion=BDsingleton.getConnexion();
 			ResultSet resultado;
 			Evento aux;
 			resultado=conexion.getQuery("select * from eventos");
@@ -376,8 +367,8 @@ public class ListaEventos {
 					aux.setLugar(resultado.getString(4));
 					aux.setFecha(resultado.getString(5));
 					
-					aux.readPersonasEvento(conexion);
-					aux.readResintoEvento(conexion);
+					aux.readPersonasEvento();
+					aux.readResintoEvento();
 					eventos.add(aux);
 				}
 			}
@@ -387,5 +378,20 @@ public class ListaEventos {
 			}
 		}
 		
+		public void agregarEventoBD(Evento input) {
+			Connectar conexion=BDsingleton.getConnexion();
+			int restriccion=0;			// Esto se utiliza para facilitar el traspaso del boolean a la BD
+			if(input.isRestriccion()) {
+				restriccion=1;
+			}
+			else {
+				restriccion=0;
+			}
+			conexion.setQuery("INSERT INTO `eventos` (`nameEvento`, `tipo`, `restriccion`, `lugar`, `fecha`) VALUES ('" + input.getNombre() + "', '" + input.getTipo() + "', '" + restriccion + "', '" + input.getLugar() + "', '" + input.getFecha() + "')");
+		}
 		
+		public void removeEventoBD(String name) {
+			Connectar conexion=BDsingleton.getConnexion();
+			conexion.setQuery("DELETE FROM `eventos` WHERE nameEvento='" + name + "'");
+		}
 }

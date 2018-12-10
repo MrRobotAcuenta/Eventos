@@ -25,7 +25,7 @@ public class TicketsVendidos {
 	
 	
 	public boolean agregarTicket(TicketCliente nuevo) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
 			entrada=new TicketCliente();
@@ -41,7 +41,7 @@ public class TicketsVendidos {
 	}
 	
 	public TicketCliente eliminarTicket(String id) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		TicketCliente entrada;
 		for(int i=0; i<registro.size() ; i++) {
 			entrada=new TicketCliente();
@@ -56,7 +56,7 @@ public class TicketsVendidos {
 	
 	
 	public boolean modificarPrecio(String id, int precio) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
 			entrada=new TicketCliente();
@@ -72,7 +72,7 @@ public class TicketsVendidos {
 	}
 	
 	public boolean modificarFechaTicket(String id, String fechaNueva) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
 			entrada=new TicketCliente();
@@ -88,7 +88,7 @@ public class TicketsVendidos {
 	}
 	
 	public void modificarFechaTicket(String fechaNueva) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		TicketCliente entrada;
 		for(int i=0; i< registro.size(); i++) {
 			entrada=new TicketCliente();
@@ -99,7 +99,8 @@ public class TicketsVendidos {
 	}
 	
 	
-	public void readTicketsVendidosPersona(Connectar conexion, String rut, String nameEvento) {
+	public void readTicketsVendidosPersona(String rut, String nameEvento) {
+		Connectar conexion=BDsingleton.getConnexion();
 		ResultSet resultado;
 		TicketCliente aux;
 		resultado=conexion.getQuery("select asiento, precio, fechaEvento, idTicket, nameEvento, rut from tickets inner join personas using (rut) where rut='"+rut+"' AND nameEvento='"+nameEvento+"'");

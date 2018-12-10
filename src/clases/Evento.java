@@ -108,8 +108,8 @@ public class Evento  {
 		personas.modificarFechaEvento(fechaNueva);
 	}
 	
-	public void readPersonasEvento(Connectar conexion) {
-		personas.readPersonasEvento(conexion, nombre);
+	public void readPersonasEvento() {
+		personas.readPersonasEvento(nombre);
 	}
 	
 	
@@ -132,8 +132,8 @@ public class Evento  {
 		return asistentes.modificarDisponible(asiento, nuevo);
 	}
 	
-	public void readResintoEvento(Connectar conexion) {
-		asistentes.readResintoEvento(conexion, nombre);
+	public void readResintoEvento() {
+		asistentes.readResintoEvento(nombre);
 	}
 	
 	

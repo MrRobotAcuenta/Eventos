@@ -1,8 +1,7 @@
 package clases;
 
-import clases.Connectar;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +14,7 @@ public class Recinto {
 	}
 	
 	public boolean agregarCupo(Cupo nuevo) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		String asiento=nuevo.getAsiento();
 		if(lugar.containsKey(asiento)) {
 			return false;
@@ -34,7 +33,7 @@ public class Recinto {
 	}
 	
 	public Cupo eliminarCupo(String asiento) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		conexion.setQuery("DELETE FROM `cupo` WHERE asiento='" + asiento + "'");
 		return lugar.remove(asiento);
 	}
@@ -44,7 +43,7 @@ public class Recinto {
 	}
 	
 	public boolean modificarDisponible(String asiento, boolean nuevo) {
-		Connectar conexion=new Connectar();
+		Connectar conexion=BDsingleton.getConnexion();
 		Cupo sitio=new Cupo();
 		sitio=lugar.get(asiento);
 		if(sitio!=null) {
@@ -64,7 +63,8 @@ public class Recinto {
 	}
 
 	
-	public void readResintoEvento(Connectar conexion, String nameEvento) {
+	public void readResintoEvento(String nameEvento) {
+		Connectar conexion=BDsingleton.getConnexion();
 		ResultSet resultado;
 		Cupo sitio;
 		String key;

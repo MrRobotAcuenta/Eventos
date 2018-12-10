@@ -43,7 +43,9 @@ public class Persona  {
 	}
 	
 	
-	
+	/*
+	 Metodos para manipular datos de la lista tickets
+	 */
 	
 	
 	public boolean existeTicket(String id) {
@@ -72,7 +74,9 @@ public class Persona  {
 	}
 	
 	
-	
+	/*
+	 Fin metodos lista Tickets
+	 */
 	
 	public boolean mayoriaEdad()
 	{
@@ -97,10 +101,9 @@ public class Persona  {
 		return false;
 	}
 	
-	public void readTicketVendidoPersona(Connectar conexion, String nameEvento) {
-		tickets.readTicketsVendidosPersona(conexion, rut, nameEvento);
+	public void readTicketVendidoPersona(String nameEvento) {
+		tickets.readTicketsVendidosPersona(rut, nameEvento);
 	}
 	
 
 }
-

@@ -1,5 +1,7 @@
 package application;
 	
+import java.sql.Connection;
+import clases.BDsingleton;
 import clases.Connectar;
 import clases.ListaEventos;
 import javafx.application.Application;
@@ -25,8 +27,7 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 	public static void main(String[] args) {
-		Connectar conexion=new Connectar();
-		eventos.readListaEventos(conexion);
+		eventos.readListaEventos();
 		launch(args);
 	}
 }
