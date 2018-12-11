@@ -72,6 +72,9 @@ public class Persona  {
 	public void modificarFechaTicket(String fechaNueva) {
 		tickets.modificarFechaTicket(fechaNueva);
 	}
+	public int cantidadTickets() {
+		return tickets.getCantidad();
+	}
 	
 	
 	/*

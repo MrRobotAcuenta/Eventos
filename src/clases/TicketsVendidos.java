@@ -124,5 +124,8 @@ public class TicketsVendidos {
 			e.printStackTrace();
 		}
 	}
+	public int getCantidad() {
+		return registro.size();
+	}
 	
 }

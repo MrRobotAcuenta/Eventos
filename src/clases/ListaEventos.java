@@ -5,7 +5,7 @@ import java.util.*;
 import java.io.*;
 import java.sql.*;
 
-public class ListaEventos {
+public class ListaEventos implements Estadistica {
 	private ArrayList<Evento> eventos;
 		
 		//inicializa una nueva lista de Evento
@@ -393,5 +393,21 @@ public class ListaEventos {
 		public void removeEventoBD(String name) {
 			Connectar conexion=BDsingleton.getConnexion();
 			conexion.setQuery("DELETE FROM `eventos` WHERE nameEvento='" + name + "'");
+		}
+
+		@Override
+		public int porcentaje() {
+			int aux;
+			
+			return (precio*10)/100;
+			
+		}
+
+		@Override
+		public int cantidad() {
+			int cantidad;
+			cantidad=eventos.size();
+			
+			return cantidad;
 		}
 }
