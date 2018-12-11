@@ -37,7 +37,7 @@ public class ListaEventos implements Estadistica {
 				}
 			}
 			eventos.add(input);
-			agregarEventoBD(input);
+			//agregarEventoBD(input);
 			return true;
 		}
 		
@@ -378,14 +378,6 @@ public class ListaEventos implements Estadistica {
 			}
 		}
 		
-		public int size() {
-			return eventos.size();
-		}
-		
-		public Evento getiEvento(int i) {
-			return eventos.get(i);
-		}
-		
 		public void agregarEventoBD(Evento input) {
 			Connectar conexion=BDsingleton.getConnexion();
 			int restriccion=0;			// Esto se utiliza para facilitar el traspaso del boolean a la BD
@@ -403,15 +395,13 @@ public class ListaEventos implements Estadistica {
 			conexion.setQuery("DELETE FROM `eventos` WHERE nameEvento='" + name + "'");
 		}
 
-		@Override
+
 		public int porcentaje() {
-			int aux;
-			
-			return (precio*10)/100;
+			return 0;
 			
 		}
 
-		@Override
+		
 		public int cantidad() {
 			int cantidad;
 			cantidad=eventos.size();

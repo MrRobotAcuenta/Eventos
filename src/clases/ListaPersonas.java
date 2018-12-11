@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-public class ListaPersonas {
+public class ListaPersonas implements Estadistica {
 	private ArrayList<Persona> listaPersonas;
 	
 	public ListaPersonas(){
@@ -193,6 +193,7 @@ public class ListaPersonas {
 				aux.setRut(resultado.getString(1));
 				aux.setFechaNacimiento(resultado.getString(2));
 				aux.setNombre(resultado.getString(3));
+				
 				aux.readTicketVendidoPersona(nameEvento);
 				listaPersonas.add(aux);
 				System.out.println(listaPersonas.get(listaPersonas.size()-1).getNombre());
@@ -202,6 +203,30 @@ public class ListaPersonas {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+
+	
+	public int porcentaje() {
+		//cuenta cuantos clientes tienen más de 2 entradas
+		int aux;
+		aux=0;
+		for(int i=0;i<cantidad();i++) {
+			if(listaPersonas.get(i).cantidadTickets()>=2) {
+				aux++;
+			}
+		}
+		return (aux*cantidad())/100;
+		}
+	
+
+
+	
+	public int cantidad() {
+		int cantidad;
+		cantidad=listaPersonas.size();
+		
+		return cantidad;
 	}
 	
 	

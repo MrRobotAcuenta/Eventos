@@ -2,6 +2,7 @@ package clases;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TicketCliente extends Ticket {
 	private String asiento;
@@ -61,6 +62,18 @@ public class TicketCliente extends Ticket {
 	}
 	public String getIdTicket() {
 		return idTicket;
+	}
+	@Override
+	public int descuento() {
+		//descuento en el caso de que la entrada se compre el dia del evento
+		Calendar fechaActual = Calendar.getInstance();
+		String cadenaFecha = String.format("%04d-%02d-%02d-%02d",fechaActual.get(Calendar.YEAR),fechaActual.get(Calendar.MONTH)+1,
+		  fechaActual.get(Calendar.DAY_OF_MONTH));
+		if(getFechaEvento().equals(fechaActual)) {
+			return (precio*10)/100;
+		}
+		
+		return precio;
 	}
 
 
