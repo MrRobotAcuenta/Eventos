@@ -1,6 +1,5 @@
 package clases;
 
-import clases.Connectar;
 
 public class BDsingleton {
 	

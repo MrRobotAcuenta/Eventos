@@ -193,7 +193,6 @@ public class ListaPersonas {
 				aux.setRut(resultado.getString(1));
 				aux.setFechaNacimiento(resultado.getString(2));
 				aux.setNombre(resultado.getString(3));
-				
 				aux.readTicketVendidoPersona(nameEvento);
 				listaPersonas.add(aux);
 				System.out.println(listaPersonas.get(listaPersonas.size()-1).getNombre());

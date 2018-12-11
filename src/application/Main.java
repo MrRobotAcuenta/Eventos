@@ -1,8 +1,6 @@
 package application;
 	
-import java.sql.Connection;
-import clases.BDsingleton;
-import clases.Connectar;
+import clases.Evento;
 import clases.ListaEventos;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +13,6 @@ import javafx.scene.Scene;
 
 public class Main extends Application {
 	
-	private static ListaEventos eventos=new ListaEventos();
 	
 	
 	
@@ -27,7 +24,6 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 	public static void main(String[] args) {
-		eventos.readListaEventos();
 		launch(args);
 	}
 }
