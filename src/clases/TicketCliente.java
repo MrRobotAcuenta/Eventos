@@ -64,7 +64,7 @@ public class TicketCliente extends Ticket {
 	}
 	@Override
 	public int descuento() {
-		// TODO Auto-generated method stub
+		//
 		return 0;
 	}
 

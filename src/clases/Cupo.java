@@ -3,6 +3,7 @@ package clases;
 public class Cupo extends Ticket {
 	public Boolean disponible;
 	private String nameEvento;
+	private Boolean tieneDescuento;
 	
 	public String getNameEvento() {
 		return nameEvento;
@@ -19,8 +20,11 @@ public class Cupo extends Ticket {
 	}
 	@Override
 	public int descuento() {
-		// TODO Auto-generated method stub
+		if(tieneDescuento) {
+		return 1;
+		}
 		return 0;
+		
 	}
 	
 	
