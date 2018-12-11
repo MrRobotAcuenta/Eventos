@@ -3,7 +3,6 @@ package clases;
 public class Cupo extends Ticket {
 	public Boolean disponible;
 	private String nameEvento;
-	private Boolean tieneDescuento;
 	
 	public String getNameEvento() {
 		return nameEvento;
@@ -17,14 +16,6 @@ public class Cupo extends Ticket {
 
 	public void setDisponible(Boolean disponible) {
 		this.disponible = disponible;
-	}
-	@Override
-	public int descuento() {
-		if(tieneDescuento) {
-		return 1;
-		}
-		return 0;
-		
 	}
 	
 	

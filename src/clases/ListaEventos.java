@@ -37,7 +37,7 @@ public class ListaEventos implements Estadistica {
 				}
 			}
 			eventos.add(input);
-			//agregarEventoBD(input);
+			agregarEventoBD(input);
 			return true;
 		}
 		
@@ -376,6 +376,14 @@ public class ListaEventos implements Estadistica {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		
+		public int size() {
+			return eventos.size();
+		}
+		
+		public Evento getiEvento(int i) {
+			return eventos.get(i);
 		}
 		
 		public void agregarEventoBD(Evento input) {
